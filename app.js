@@ -67,7 +67,7 @@ const special = {
   'personal_fm.js': '/personal_fm',
 }
 
-fs.readdirSync(path.join(__dirname, 'module'))
+fs.readdirSync(path.join(__dirname, 'api'))
   .reverse()
   .forEach((file) => {
     if (!file.endsWith('.js')) return
@@ -75,7 +75,7 @@ fs.readdirSync(path.join(__dirname, 'module'))
       file in special
         ? special[file]
         : '/' + file.replace(/\.js$/i, '').replace(/_/g, '/')
-    let question = require(path.join(__dirname, 'module', file))
+    let question = require(path.join(__dirname, 'api', file))
 
     app.use(route, (req, res) => {
       if (typeof req.query.cookie === 'string') {
